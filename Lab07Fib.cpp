@@ -1,7 +1,7 @@
 //file containing the fibbonacci sequence numbers
 
 #include <iostream>
-
+#include <ctime>
 using namespace std;
 //fib = sum of first two preceeding ones
 
@@ -24,13 +24,13 @@ if(rounds == 0){
 }
 if(rounds >= 0){
 second = fibRecBi(0, first, second) + fibRecBi(rounds-1, second, second + first);
-cout << second << endl;
+//cout << second << endl;
 }
 return 0;
 }
 
 long long fibRecSeq(int rounds, long long first = 0, long long second = 1, long long total = 1){
-cout << total << endl;
+//cout << total << endl;
 if(rounds >= 0){
 return fibRecSeq(rounds-1, second, total, second + total);
 }
@@ -38,9 +38,19 @@ return 0;
 }
 
 int main(){
-//fib(50);
+double start = double(clock()) / CLOCKS_PER_SEC;
+fib(50);
+// 8.375 seconds for 100000000 runs of 50, .015625 seconds for 10 millionth fibonacci number.
 fibRecBi(50, 0);
-//fibRecSeq(50, 0, 1, 1);
+// .01625 seconds for 100000 runs.
+fibRecSeq(50, 0, 1, 1);
+//161.969 seconds for 10000000 runs.
 
+cout << endl;
 
+double finish = double(clock()) / CLOCKS_PER_SEC;
+
+double elapsed = finish - start;
+cout << elapsed << endl;
+return 0;
 }
